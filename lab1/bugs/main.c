@@ -3,8 +3,6 @@
  * \brief LAB 01: Part 1 - Compilation
  **/
 
-#include "../types.h"
-
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
