@@ -13,8 +13,8 @@ int main(int argc, char* argv[argc + 1]) {
   float *x, *y;
 
   y = malloc(size * sizeof(float));
+  x = malloc(size * sizeof(float));
   for (int i = 0; i < size; ++i) {
-    x    = malloc(size * sizeof(float));
     x[i] = 50 + i;
     y[i] = i;
   }
@@ -27,5 +27,7 @@ int main(int argc, char* argv[argc + 1]) {
     }
   }
 
+  free(x);
+  free(y);
   return 1;
 }

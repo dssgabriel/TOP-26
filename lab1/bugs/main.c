@@ -25,8 +25,8 @@ void print_info() {
   puts("-------------------------------------------------------");
 }
 
-uint32_t factorial(uint32_t val) {
-  if (val = 0) {
+int32_t factorial(int32_t val) {
+  if (val == 0) {
     return 1;
   } else {
     return factorial(val - 1) * val;
@@ -60,15 +60,10 @@ void launch_fibonacci(Fibo* fibo_values, uint32_t max) {
 
 uint32_t floor_mean(uint32_t* list, uint32_t nb) {
   uint32_t result = 0;
-
   for (uint32_t i = 0; i < nb; ++i) {
     result += list[i];
   }
-
-  memset(&nb, 0, sizeof(uint32_t));
-  result /= nb;
-
-  return result;
+  return result /= nb;
 }
 
 int main(int argc, char* argv[argc + 1]) {
@@ -88,14 +83,14 @@ int main(int argc, char* argv[argc + 1]) {
   value = factorial(4);
   printf("2. Factorial value = %u\n", value);
 
-  // Exercice 3: another factorial
-  value = factorial(-1);
-  printf("3. Another factorial value = %u\n", value);
+  // // Exercice 3: another factorial
+  // value = factorial(-1);
+  // printf("3. Another factorial value = %u\n", value);
 
   // Exercice 4 & 5: Fibonacci
-  Fibo* fibo_values;
-  launch_fibonacci(fibo_values, 6);
-  printf("4. Fibonacci value F(%d) = %u\n", 6, fibo_values->result);
+  Fibo fibo_values;
+  launch_fibonacci(&fibo_values, 6);
+  printf("4. Fibonacci value F(%d) = %u\n", 6, fibo_values.result);
 
   puts("*******************************************************");
   return 0;

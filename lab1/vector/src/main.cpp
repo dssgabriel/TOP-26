@@ -66,9 +66,8 @@ auto benchmark(int64_t size, int64_t reps) -> void {
   print_results(a, b, c);
 }
 
-auto main(int argc, char* argv[]) -> int {
+auto main() -> int {
   print_info();
-  int useless = 42;
   benchmark(VECTOR_SIZE, REPETITIONS);
   return 0;
 }
