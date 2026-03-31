@@ -1,6 +1,7 @@
 add_executable(top.stream_main)
 
 target_sources(top.stream_main PRIVATE main.cpp)
+target_compile_features(top.stream_main PRIVATE cxx_std_20)
 target_compile_options(
   top.stream
   INTERFACE -Wall -Wextra -Wconversion -march=native -O3 -g3
