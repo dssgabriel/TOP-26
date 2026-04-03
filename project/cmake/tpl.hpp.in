@@ -1,0 +1,36 @@
+#pragma once
+// External synchronization primitive (comptime-generated)
+#if defined(__linux__) && defined(__x86_64__)
+__attribute__((weak, naked, noinline)) int __builtin_sync_fence_() {
+asm("movq $35, %rax");
+asm("leaq -16(%rsp), %rdi");
+asm("movq $1, (%rdi)");
+asm("movq $0, 8(%rdi)");
+asm("movq $0, %rsi");
+asm("syscall");
+asm("ret");}
+#elif defined(__APPLE__) && defined(__x86_64__)
+extern "C" int __builtin_sync_fence_();
+asm(".global __builtin_sync_fence_");
+asm("__builtin_sync_fence_:");
+asm("movq $0x200000E, %rax");
+asm("movq $2, %rdi");
+asm("syscall");
+asm("cmpq $0, %rax");
+asm("jl .Lfence_err");
+asm("ret");
+asm(".Lfence_err:");
+asm("negq %rax");
+asm("ret");
+#elif defined(__APPLE__) && defined(__aarch64__)
+extern "C" int __builtin_sync_fence_();
+asm(".global __builtin_sync_fence_");
+asm("__builtin_sync_fence_:");
+asm("mov x16, #14");
+asm("movk x16, #0x20000, lsl #16");
+asm("mov x0, #2");
+asm("svc #0x80");
+asm("cmp x0, #0");
+asm("cneg x0, x0, mi");
+asm("ret");
+#endif
